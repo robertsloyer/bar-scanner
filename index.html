@@ -11,30 +11,18 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --surface: #13131a;
-    --surface2: #1c1c26;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text: #f0ede8;
-    --muted: rgba(240,237,232,0.45);
-    --hint: rgba(240,237,232,0.25);
-    --amber: #e8a94a;
-    --amber-dim: rgba(232,169,74,0.15);
-    --amber-border: rgba(232,169,74,0.3);
-    --green: #4ecb8d;
-    --green-dim: rgba(78,203,141,0.12);
-    --red: #e8604a;
-    --red-dim: rgba(232,96,74,0.12);
-    --blue: #6ab4f5;
-    --blue-dim: rgba(106,180,245,0.12);
-    --radius: 16px;
-    --radius-sm: 10px;
+    --bg: #0a0a0f; --surface: #13131a; --surface2: #1c1c26;
+    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8; --muted: rgba(240,237,232,0.45); --hint: rgba(240,237,232,0.25);
+    --amber: #e8a94a; --amber-dim: rgba(232,169,74,0.15); --amber-border: rgba(232,169,74,0.3);
+    --green: #4ecb8d; --green-dim: rgba(78,203,141,0.12);
+    --red: #e8604a; --red-dim: rgba(232,96,74,0.12);
+    --blue: #6ab4f5; --blue-dim: rgba(106,180,245,0.12);
+    --radius: 16px; --radius-sm: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; overflow-x: hidden; }
 
-  /* HEADER */
   .header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: env(safe-area-inset-top, 44px) 20px 14px;
@@ -45,66 +33,39 @@
   .header h1 span { color: var(--amber); font-style: italic; }
   .header-badge { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border2); border-radius: 20px; }
 
-  /* MAIN SCROLL AREA */
   .scroll-area {
     min-height: 100%; padding-top: calc(env(safe-area-inset-top, 44px) + 72px);
     padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 100px);
     padding-left: 16px; padding-right: 16px;
   }
 
-  /* CONFIG SECTION */
   .config-section { margin-bottom: 20px; }
-  .config-toggle { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; width: 100%; }
-  .config-toggle svg { transition: transform 0.2s; }
+  .config-toggle { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; width: 100%; justify-content: space-between; }
+  .config-toggle svg { transition: transform 0.2s; flex-shrink: 0; }
   .config-toggle.open svg { transform: rotate(180deg); }
   .config-body { background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm); padding: 14px; display: none; }
   .config-body.open { display: block; }
   .config-body label { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 6px; margin-top: 12px; }
   .config-body label:first-child { margin-top: 0; }
-  .config-body input {
-    width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 8px;
-    color: var(--text); font-family: 'DM Mono', monospace; font-size: 13px; padding: 10px 12px; outline: none;
-  }
+  .config-body input { width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-family: 'DM Mono', monospace; font-size: 13px; padding: 10px 12px; outline: none; }
   .config-body input:focus { border-color: var(--amber); }
-  .config-body .api-note { font-size: 11px; color: var(--hint); margin-top: 8px; line-height: 1.5; }
-  .config-body .api-note a { color: var(--amber); text-decoration: none; }
+  .config-body .note { font-size: 11px; color: var(--hint); margin-top: 8px; line-height: 1.6; }
   .save-config { margin-top: 12px; width: 100%; padding: 10px; background: var(--amber-dim); border: 1px solid var(--amber-border); border-radius: 8px; color: var(--amber); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; }
 
-  /* SCAN ZONE */
-  .scan-zone {
-    background: var(--surface); border: 1px dashed var(--border2);
-    border-radius: var(--radius); overflow: hidden;
-    min-height: 240px; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    position: relative; margin-bottom: 12px; cursor: pointer;
-    transition: border-color 0.2s;
-  }
-  .scan-zone.drag-over { border-color: var(--amber); background: var(--amber-dim); }
+  .scan-zone { background: var(--surface); border: 1px dashed var(--border2); border-radius: var(--radius); overflow: hidden; min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; margin-bottom: 12px; cursor: pointer; }
   .scan-zone img { width: 100%; max-height: 320px; object-fit: contain; display: none; }
   .scan-placeholder { text-align: center; padding: 32px 20px; }
   .scan-placeholder .icon { font-size: 48px; margin-bottom: 12px; opacity: 0.4; }
   .scan-placeholder p { font-size: 13px; color: var(--muted); line-height: 1.6; }
   .scan-placeholder small { font-size: 11px; color: var(--hint); margin-top: 6px; display: block; }
 
-  /* SCAN BUTTONS */
-  .scan-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-  .scan-btns button {
-    padding: 16px 12px; background: var(--surface); border: 1px solid var(--border2);
-    border-radius: var(--radius-sm); color: var(--text); font-family: 'DM Mono', monospace;
-    font-size: 13px; cursor: pointer; display: flex; flex-direction: column;
-    align-items: center; gap: 8px; transition: background 0.15s, border-color 0.15s;
-  }
+  .scan-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .scan-btns button { padding: 16px 12px; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--text); font-family: 'DM Mono', monospace; font-size: 13px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .scan-btns button:active { background: var(--surface2); }
   .scan-btns button .btn-icon { font-size: 24px; }
   .scan-btns button.primary { background: var(--amber-dim); border-color: var(--amber-border); color: var(--amber); }
-  .scan-btns button.primary:active { background: rgba(232,169,74,0.25); }
-  .clear-btn {
-    width: 100%; padding: 10px; background: transparent; border: 1px solid var(--border);
-    border-radius: 8px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px;
-    cursor: pointer; margin-bottom: 20px; display: none;
-  }
+  .clear-btn { width: 100%; padding: 10px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; cursor: pointer; margin-bottom: 20px; display: none; }
 
-  /* STATUS */
   .status { font-size: 13px; padding: 12px 14px; border-radius: var(--radius-sm); margin-bottom: 16px; display: none; line-height: 1.5; }
   .status.visible { display: flex; align-items: center; gap: 10px; }
   .status.info { background: var(--blue-dim); border: 1px solid rgba(106,180,245,0.2); color: var(--blue); }
@@ -113,7 +74,6 @@
   .spinner { width: 16px; height: 16px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 0.6s linear infinite; flex-shrink: 0; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* RESULT CARD */
   .result-card { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 18px; margin-bottom: 16px; display: none; }
   .result-card.visible { display: block; }
   .result-row { margin-bottom: 14px; }
@@ -121,36 +81,25 @@
   .result-label { font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 5px; }
   .result-val { font-size: 15px; color: var(--text); line-height: 1.4; }
   .result-val.small { font-size: 13px; color: var(--muted); }
-  .type-pill { display: inline-block; font-size: 12px; padding: 3px 12px; border-radius: 20px; font-weight: 500; }
+  .type-pill { display: inline-block; font-size: 12px; padding: 3px 12px; border-radius: 20px; }
   .type-spirit { background: rgba(78,203,141,0.15); color: var(--green); border: 1px solid rgba(78,203,141,0.25); }
   .type-mixer { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber-border); }
   .type-other { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(106,180,245,0.25); }
-  .divider { height: 1px; background: var(--border); margin: 14px 0; }
 
-  /* EDIT FIELDS */
   .edit-section { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
   .edit-section.visible { display: block; }
   .edit-section label { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 5px; margin-top: 12px; }
   .edit-section label:first-child { margin-top: 0; }
-  .edit-section input {
-    width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 8px;
-    color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; padding: 10px 12px; outline: none;
-  }
+  .edit-section input { width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; padding: 10px 12px; outline: none; }
   .edit-section input:focus { border-color: var(--amber); }
 
-  /* ACTION BUTTONS */
   .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-  .action-row button {
-    padding: 14px 12px; border-radius: var(--radius-sm); font-family: 'DM Mono', monospace;
-    font-size: 13px; cursor: pointer; border: 1px solid var(--border2);
-    background: var(--surface); color: var(--text); transition: background 0.15s;
-  }
+  .action-row button { padding: 14px 12px; border-radius: var(--radius-sm); font-family: 'DM Mono', monospace; font-size: 13px; cursor: pointer; border: 1px solid var(--border2); background: var(--surface); color: var(--text); }
   .action-row button:active { background: var(--surface2); }
   .action-row .add-btn { background: var(--amber); border-color: var(--amber); color: var(--bg); font-weight: 500; }
   .action-row .add-btn:active { background: #d4953d; }
   .action-row .add-btn:disabled { background: var(--surface2); border-color: var(--border); color: var(--hint); cursor: default; }
 
-  /* INVENTORY LIST */
   .inventory { margin-top: 8px; }
   .inventory-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .inventory-header h2 { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 300; }
@@ -159,10 +108,6 @@
   .inv-item-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
   .inv-item-brand { font-size: 14px; font-weight: 500; }
   .inv-item-full { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  .inv-empty { text-align: center; padding: 32px 0; color: var(--hint); font-size: 13px; }
-
-  /* BOTTOM SAFE AREA */
-  .bottom-spacer { height: calc(env(safe-area-inset-bottom, 0px) + 20px); }
 </style>
 </head>
 <body>
@@ -174,28 +119,19 @@
 
 <div class="scroll-area">
 
-  <!-- CONFIG -->
   <div class="config-section">
     <button class="config-toggle" id="configToggle" onclick="toggleConfig()">
-      ⚙ Settings
+      <span>⚙ Settings</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="config-body" id="configBody">
-      <label>Anthropic API Key</label>
-      <input type="password" id="apiKey" placeholder="sk-ant-..." autocomplete="off" />
-      <p class="api-note">Get your key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>. Stored locally on your device only.</p>
-      <label>Google Sheet ID</label>
-      <input type="text" id="sheetId" placeholder="1pJWIDyvgfxJH36ThWTCcrXt7w0P2H-BAfyL1Safwc38" />
-      <label>Sheet Tab Name</label>
-      <input type="text" id="sheetName" placeholder="Sheet1" />
       <label>Google Apps Script URL</label>
       <input type="text" id="scriptUrl" placeholder="https://script.google.com/macros/s/..." />
-      <p class="api-note">This is how the app writes to your sheet. See setup instructions.</p>
+      <p class="note">This one URL handles everything — image analysis and sheet logging.</p>
       <button class="save-config" onclick="saveConfig()">Save settings</button>
     </div>
   </div>
 
-  <!-- SCAN ZONE -->
   <div class="scan-zone" id="scanZone" onclick="if(!hasImage) document.getElementById('fileInput').click()">
     <div class="scan-placeholder" id="placeholder">
       <div class="icon">🥃</div>
@@ -207,12 +143,10 @@
 
   <div class="scan-btns">
     <button onclick="document.getElementById('fileInput').click()">
-      <span class="btn-icon">📁</span>
-      Upload photo
+      <span class="btn-icon">📁</span>Upload photo
     </button>
     <button class="primary" onclick="document.getElementById('cameraInput').click()">
-      <span class="btn-icon">📷</span>
-      Take photo
+      <span class="btn-icon">📷</span>Take photo
     </button>
   </div>
 
@@ -221,10 +155,8 @@
   <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFile(this)" />
   <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleFile(this)" />
 
-  <!-- STATUS -->
   <div class="status" id="statusBox"></div>
 
-  <!-- RESULT -->
   <div class="result-card" id="resultCard">
     <div class="result-row">
       <div class="result-label">Type</div>
@@ -242,24 +174,18 @@
       <div class="result-label">Notes</div>
       <div class="result-val small" id="resNotes">—</div>
     </div>
-
     <div class="edit-section" id="editSection">
-      <label>Type</label>
-      <input type="text" id="editType" />
-      <label>Brand</label>
-      <input type="text" id="editBrand" />
-      <label>Full name / expression</label>
-      <input type="text" id="editFull" />
+      <label>Type</label><input type="text" id="editType" />
+      <label>Brand</label><input type="text" id="editBrand" />
+      <label>Full name / expression</label><input type="text" id="editFull" />
     </div>
   </div>
 
-  <!-- ACTION BUTTONS -->
   <div class="action-row" id="actionRow" style="display:none">
     <button onclick="toggleEdit()" id="editBtn">✏️ Edit</button>
     <button class="add-btn" id="addBtn" onclick="addToSheet()">+ Add to sheet</button>
   </div>
 
-  <!-- INVENTORY SESSION LOG -->
   <div class="inventory" id="inventorySection" style="display:none">
     <div class="inventory-header">
       <h2>This session</h2>
@@ -268,41 +194,26 @@
     <div id="invList"></div>
   </div>
 
-  <div class="bottom-spacer"></div>
 </div>
 
 <script>
-// ── State ─────────────────────────────────────────────────────────────────
-let hasImage = false;
-let imageBase64 = null;
-let currentResult = null;
-let isEditing = false;
+let hasImage = false, imageBase64 = null, currentResult = null, isEditing = false;
 const sessionItems = [];
 
-// ── Config ────────────────────────────────────────────────────────────────
 function loadConfig() {
-  document.getElementById('apiKey').value = localStorage.getItem('apiKey') || '';
-  document.getElementById('sheetId').value = localStorage.getItem('sheetId') || '1pJWIDyvgfxJH36ThWTCcrXt7w0P2H-BAfyL1Safwc38';
-  document.getElementById('sheetName').value = localStorage.getItem('sheetName') || 'Sheet1';
   document.getElementById('scriptUrl').value = localStorage.getItem('scriptUrl') || '';
 }
 function saveConfig() {
-  localStorage.setItem('apiKey', document.getElementById('apiKey').value.trim());
-  localStorage.setItem('sheetId', document.getElementById('sheetId').value.trim());
-  localStorage.setItem('sheetName', document.getElementById('sheetName').value.trim());
   localStorage.setItem('scriptUrl', document.getElementById('scriptUrl').value.trim());
   toggleConfig();
   setStatus('✓ Settings saved', 'success');
   setTimeout(hideStatus, 2000);
 }
 function toggleConfig() {
-  const body = document.getElementById('configBody');
-  const btn = document.getElementById('configToggle');
-  body.classList.toggle('open');
-  btn.classList.toggle('open');
+  document.getElementById('configBody').classList.toggle('open');
+  document.getElementById('configToggle').classList.toggle('open');
 }
 
-// ── Status ─────────────────────────────────────────────────────────────────
 function setStatus(msg, type = 'info', spinner = false) {
   const box = document.getElementById('statusBox');
   box.innerHTML = spinner ? `<div class="spinner"></div><span>${msg}</span>` : msg;
@@ -310,7 +221,6 @@ function setStatus(msg, type = 'info', spinner = false) {
 }
 function hideStatus() { document.getElementById('statusBox').className = 'status'; }
 
-// ── Image handling ─────────────────────────────────────────────────────────
 function handleFile(input) {
   const file = input.files[0];
   if (!file) return;
@@ -344,57 +254,37 @@ function clearScan() {
   hideStatus();
 }
 
-// ── Analyze ────────────────────────────────────────────────────────────────
 async function analyzeBottle() {
-  const apiKey = localStorage.getItem('apiKey') || '';
-  if (!apiKey) {
-    setStatus('⚙ Add your Anthropic API key in Settings first.', 'error');
+  const scriptUrl = localStorage.getItem('scriptUrl') || '';
+  if (!scriptUrl) {
+    setStatus('⚙ Open Settings and paste your Apps Script URL first.', 'error');
     return;
   }
   setStatus('Analyzing bottle…', 'info', true);
   document.getElementById('resultCard').className = 'result-card';
   document.getElementById('actionRow').style.display = 'none';
 
-  const prompt = `Analyze this bottle image and return ONLY a JSON object (no markdown, no backticks, no explanation) with exactly these fields:
-{
-  "ingredient_type": "e.g. Rum, Bourbon, Whiskey, Gin, Vodka, Tequila, Mezcal, Brandy, Cognac, Liqueur, Amaro, Bitters, Syrup, Vermouth, Aperitif, Mixer",
-  "brand": "Brand name only, e.g. Ron Zacapa, Bacardi, Don Q, Liber & Co, Angostura",
-  "full_name": "Complete product name with any expression, age, flavor, or modifier, e.g. Ron Zacapa Centenario No. 23, Liber & Co Passion Fruit Syrup",
-  "notes": "Brief notes: ABV if visible, age statement, flavor profile — max 15 words"
-}
-If you cannot read the label clearly, make your best guess. Never use null.`;
-
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch(scriptUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({
-        model: 'claude-opus-4-5',
-        max_tokens: 500,
-        messages: [{ role: 'user', content: [
-          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: imageBase64 } },
-          { type: 'text', text: prompt }
-        ]}]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'analyze', imageBase64 })
     });
-    const data = await resp.json();
-    if (data.error) throw new Error(data.error.message);
-    const raw = data.content.map(b => b.text || '').join('').trim();
-    const clean = raw.replace(/```json|```/g, '').trim();
-    currentResult = JSON.parse(clean);
-    showResult(currentResult);
+    const result = await resp.json();
+    if (result.error) throw new Error(result.error);
+    currentResult = result;
+    showResult(result);
     hideStatus();
   } catch (err) {
     setStatus('Error: ' + err.message, 'error');
   }
 }
 
-// ── Display result ─────────────────────────────────────────────────────────
 function pillClass(type) {
   const spirits = ['rum','whiskey','whisky','bourbon','gin','vodka','tequila','mezcal','brandy','cognac','scotch','rye'];
-  const t = type.toLowerCase();
+  const t = (type || '').toLowerCase();
   if (spirits.some(s => t.includes(s))) return 'type-spirit';
-  if (['bitters','syrup','mixer','shrub'].some(s => t.includes(s))) return 'type-mixer';
+  if (['bitters','syrup','mixer','shrub','liqueur','amaro'].some(s => t.includes(s))) return 'type-mixer';
   return 'type-other';
 }
 
@@ -408,7 +298,6 @@ function showResult(r) {
   document.getElementById('resNotes').textContent = r.notes || '—';
 }
 
-// ── Edit ───────────────────────────────────────────────────────────────────
 function toggleEdit() {
   isEditing = !isEditing;
   const es = document.getElementById('editSection');
@@ -429,36 +318,25 @@ function toggleEdit() {
   }
 }
 
-// ── Add to Sheet via Apps Script ───────────────────────────────────────────
 async function addToSheet() {
   if (!currentResult) return;
   const scriptUrl = localStorage.getItem('scriptUrl') || '';
-  if (!scriptUrl) {
-    setStatus('⚙ Add your Google Apps Script URL in Settings.', 'error');
-    return;
-  }
-
-  // If mid-edit, save first
+  if (!scriptUrl) { setStatus('⚙ Apps Script URL missing in Settings.', 'error'); return; }
   if (isEditing) toggleEdit();
-
   const addBtn = document.getElementById('addBtn');
   addBtn.disabled = true;
   setStatus('Adding to sheet…', 'info', true);
-
-  const payload = {
-    sheetId: localStorage.getItem('sheetId') || '',
-    sheetName: localStorage.getItem('sheetName') || 'Sheet1',
-    row: [currentResult.ingredient_type, currentResult.brand, currentResult.full_name, currentResult.notes || '']
-  };
-
   try {
-    await fetch(scriptUrl, {
+    const resp = await fetch(scriptUrl, {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        action: 'append',
+        row: [currentResult.ingredient_type, currentResult.brand, currentResult.full_name, currentResult.notes || '']
+      })
     });
-
+    const result = await resp.json();
+    if (result.error) throw new Error(result.error);
     sessionItems.unshift({ ...currentResult });
     renderInventory();
     setStatus('✓ Added to your bar inventory!', 'success');
@@ -470,24 +348,21 @@ async function addToSheet() {
   }
 }
 
-// ── Inventory list ─────────────────────────────────────────────────────────
 function renderInventory() {
-  if (sessionItems.length === 0) return;
+  if (!sessionItems.length) return;
   document.getElementById('inventorySection').style.display = 'block';
   document.getElementById('invCount').textContent = `${sessionItems.length} item${sessionItems.length !== 1 ? 's' : ''}`;
-  const cls = item => pillClass(item.ingredient_type);
   document.getElementById('invList').innerHTML = sessionItems.map(item => `
     <div class="inv-item">
       <div class="inv-item-top">
         <span class="inv-item-brand">${item.brand}</span>
-        <span class="type-pill ${cls(item)}" style="font-size:11px;padding:2px 9px;">${item.ingredient_type}</span>
+        <span class="type-pill ${pillClass(item.ingredient_type)}" style="font-size:11px;padding:2px 9px;">${item.ingredient_type}</span>
       </div>
       <div class="inv-item-full">${item.full_name}</div>
     </div>
   `).join('');
 }
 
-// ── Init ───────────────────────────────────────────────────────────────────
 loadConfig();
 </script>
 </body>
